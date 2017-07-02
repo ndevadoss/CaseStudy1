@@ -4,9 +4,10 @@
 #   output: /Analysis/Beer.md
 #   html_document: /Analysis/Beer.html
 
+
 #Introduction:
 
-### This case study is to analyze everything about Beers and Breweries across United States. We have the sample data collected on Beers and Breweries and is available in the Data directory inside the CaseStudy Repository in github.File count as following:
+## This case study is to analyze everything about Beers and Breweries across United States. We have the sample data collected on Beers and Breweries and is available in the Data directory inside the CaseStudy Repository in github.File count as following:
 
 ##Data Dictionary:
 ###Beers data file has 2410 observations and 7 columns: 
