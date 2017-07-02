@@ -184,12 +184,20 @@ $(document).ready(function () {
 </div>
 <div id="in-order-to-perform-the-study-we-will-do-the-following-steps-which-will-also-answer-the-questions" class="section level2">
 <h2>In order to perform the study we will do the following steps which will also answer the questions :</h2>
-<div id="load-the-required-libraries-to-perform-the-study." class="section level3">
-<h3>Load the required libraries to perform the study.</h3>
+<div id="load-the-required-libraries-to-perform-the-study.we-will-need-readr-for-file-reading-and-ggplot2-for-br-plot-and-scatter-plot" class="section level3">
+<h3>Load the required libraries to perform the study.We will need readr for file reading and ggplot2 for br plot and scatter plot</h3>
 </div>
 </div>
 <div id="reading-files" class="section level2">
 <h2>Reading Files</h2>
+<div id="read.csv-will-read-the-csv-file-header-is-set-to-true-and-all-blanks-will-be-read-as-na" class="section level4">
+<h4>read.csv will read the csv file , header is set to true and all blanks will be read as NA</h4>
+</div>
+<div id="this-will-help-for-easy-data-cleanup" class="section level4">
+<h4>This will help for easy data cleanup</h4>
+</div>
+<div id="str-function-will-display-the-field-names-and-their-datatype.-it-also-displays-the-number-of-observations-and-the-class-of-the-variable" class="section level4">
+<h4>str function will display the field names and their datatype. It also displays the number of observations and the class of the variable</h4>
 <pre class="r"><code>Beers &lt;- read.csv(&quot;C:/Nithya/MSDS/Term1/6306_Doing_DS/Week7/CaseStudy/Download/Beers.csv&quot;,header=T,na.strings=&quot;&quot;)
 Breweries &lt;- read.csv(&quot;C:/Nithya/MSDS/Term1/6306_Doing_DS/Week7/CaseStudy/Download/Breweries.csv&quot;,header=T,na.strings=&quot;&quot;)
 str(Beers)</code></pre>
@@ -208,6 +216,7 @@ str(Beers)</code></pre>
 ##  $ City   : Factor w/ 384 levels &quot;Abingdon&quot;,&quot;Abita Springs&quot;,..: 228 200 122 299 300 62 91 48 152 136 ...
 ##  $ State  : Factor w/ 51 levels &quot; AK&quot;,&quot; AL&quot;,&quot; AR&quot;,..: 24 18 20 5 5 41 6 23 23 23 ...</code></pre>
 </div>
+</div>
 <div id="beers-data-file-has-2410-observations-and-7-columns-1" class="section level2">
 <h2>Beers data file has 2410 observations and 7 columns</h2>
 </div>
@@ -220,6 +229,11 @@ str(Beers)</code></pre>
 </div>
 <div id="count-the-number-of-breweries-by-state" class="section level1">
 <h1>1. Count the number of breweries by state</h1>
+<div id="base-package-has-aggregate-function-which-can-be-used-to-count-the-rows-based-on-a-group-by-variable" class="section level4">
+<h4>Base package has aggregate function which can be used to count the rows based on a group by variable</h4>
+</div>
+<div id="group-by-here-is-on-state-and-we-will-get-the-count-of-brew-id-.-this-can-be-any-other-variable-in-the-dataframe" class="section level4">
+<h4>group by here is on state and we will get the count of brew id . this can be any other variable in the dataframe</h4>
 <pre class="r"><code>aggregate(cbind(count = Breweries$Brew_ID) ~ Breweries$State, 
           data = Breweries, 
           FUN = function(x){NROW(x)})</code></pre>
@@ -275,6 +289,7 @@ str(Beers)</code></pre>
 ## 49              WI    20
 ## 50              WV     1
 ## 51              WY     4</code></pre>
+</div>
 <div id="there-are-47-breweries-in-co-followed-by-ca-with-39-breweries" class="section level3">
 <h3>There are 47 breweries in CO , followed by CA with 39 Breweries</h3>
 </div>
@@ -284,6 +299,20 @@ str(Beers)</code></pre>
 </div>
 <div id="merging-beers-and-breweries-data" class="section level1">
 <h1>2. Merging Beers and Breweries data</h1>
+<div id="merge-function-is-used-to-merge-2-dataframes-beer-and-breweries-with-a-joining-column-which-is-brewid." class="section level4">
+<h4>merge function is used to merge 2 dataframes Beer and Breweries with a joining column which is brewid.</h4>
+</div>
+<div id="since-the-common-column-name-is-different-in-both-dataframes-we-can-use-by.x-and-by.y-argument-to-define-the-joining-column-name" class="section level4">
+<h4>Since the common column name is different in both dataframes we can use by.x and by.y argument to define the joining column name</h4>
+</div>
+<div id="str-function-displays-the-class-of-the-variable-and-the-total-number-of-observations" class="section level4">
+<h4>str function displays the class of the variable and the total number of observations</h4>
+</div>
+<div id="head-function-displays-the-first-6-observations-by-default" class="section level4">
+<h4>head function displays the first 6 observations by default</h4>
+</div>
+<div id="tail-function-displays-the-last-6-observations-by-default" class="section level4">
+<h4>tail function displays the last 6 observations by default</h4>
 <pre class="r"><code>merge_df&lt;-merge(Breweries,Beers,by.x = &quot;Brew_ID&quot; , by.y = &quot;Brewery_id&quot;)
 ## Number of observations after data merging
 str(merge_df)</code></pre>
@@ -299,7 +328,7 @@ str(merge_df)</code></pre>
 ##  $ Style  : Factor w/ 99 levels &quot;Abbey Single Ale&quot;,..: 82 21 56 15 76 47 17 11 45 76 ...
 ##  $ Ounces : num  16 16 16 16 16 16 16 16 16 16 ...</code></pre>
 <pre class="r"><code>## **************
-##First 6 records
+## First 6 records
 ## **************
 head(merge_df)</code></pre>
 <pre><code>##   Brew_ID             Name.x        City State        Name.y Beer_ID   ABV
@@ -317,7 +346,7 @@ head(merge_df)</code></pre>
 ## 5  26                  Milk / Sweet Stout     16
 ## 6  19                   English Brown Ale     16</code></pre>
 <pre class="r"><code>## *************
-##Last 6 records
+## Last 6 records
 ## *************
 tail(merge_df)</code></pre>
 <pre><code>##      Brew_ID                        Name.x          City State
@@ -341,23 +370,38 @@ tail(merge_df)</code></pre>
 ## 2408     12
 ## 2409     12
 ## 2410     12</code></pre>
+</div>
 <div id="after-merging-we-have-2410-obs.-of-10-variables.-this-dataset-is-available-in-data-directory-along-with-the-sample-data.-filename-merge.csv" class="section level3">
 <h3>After merging we have 2410 obs. of 10 variables. This dataset is available in Data Directory along with the sample data. Filename : merge.csv</h3>
 </div>
 </div>
 <div id="reporting-of-nas" class="section level1">
 <h1>3. Reporting # of NA’s</h1>
+<div id="is.na-function-is-used-to-find-the-observations-which-is-na-which-is-the-result-of-merge-or-the-blanks-which-were-converted-to-na-when-we-read-the-file" class="section level4">
+<h4>is.na function is used to find the observations which is NA which is the result of merge or the blanks which were converted to NA when we read the file</h4>
+</div>
+<div id="colsums-will-get-the-total-count-of-the-observations-if-is.na-returns-true" class="section level4">
+<h4>colsums will get the total count of the observations if is.na returns true</h4>
 <pre class="r"><code>colSums(is.na(merge_df))</code></pre>
 <pre><code>## Brew_ID  Name.x    City   State  Name.y Beer_ID     ABV     IBU   Style 
 ##       0       0       0       0       0       0      62    1005       5 
 ##  Ounces 
 ##       0</code></pre>
+</div>
 <div id="based-on-the-result-we-have-62-na-in-the-column-abv-1005-na-in-the-column-ibu-and-5-na-in-the-column-style." class="section level3">
 <h3>Based on the result ,we have 62 NA in the column ABV , 1005 NA in the column IBU and 5 NA in the column Style.</h3>
 </div>
 </div>
 <div id="median-alcohol-content-for-each-state" class="section level1">
 <h1>4.Median alcohol content for each state</h1>
+<div id="aggregate-function-is-used-to-get-the-median-value-of-abv-group-by-state.na.rm-is-set-to-true-to-remove-the-na-observations-and-then-get-the-median-value" class="section level4">
+<h4>aggregate function is used to get the median value of ABV group by state.na.rm is set to TRUE to remove the NA observations and then get the median value</h4>
+</div>
+<div id="colnames-sets-the-column-names-of-the-derived-dataframe-to-a-meaningful-literal" class="section level4">
+<h4>colnames sets the column names of the derived dataframe to a meaningful literal</h4>
+</div>
+<div id="summary-function-will-give-the-5-point-summary-statistics-of-the-variable-given-as-argument" class="section level4">
+<h4>Summary function will give the 5 point summary statistics of the variable given as argument</h4>
 <pre class="r"><code>ABV_ST&lt;-aggregate(merge_df$ABV ~ merge_df$State, data = merge_df, median,na.rm=TRUE)
 colnames(ABV_ST) &lt;- c(&quot;State&quot;,&quot;ABV&quot;) 
 ABV_ST</code></pre>
@@ -422,11 +466,21 @@ ABV_ST</code></pre>
 ##   CA    : 1   3rd Qu.:0.05800  
 ##   CO    : 1   Max.   :0.06250  
 ##  (Other):45</code></pre>
+</div>
 <div id="bar-chart-to-show-median-abv-in-various-states" class="section level2">
 <h2>Bar Chart to show Median ABV in various states</h2>
+<div id="ggplot-function-is-used-to-get-the-bar-chart-where-x-axis-is-the-state-and-y-axis-is-median-abv.ggtitle-gives-the-headingtitle-to-the-bar-chart" class="section level4">
+<h4>ggplot function is used to get the bar chart where x axis is the state and y axis is Median ABV.ggtitle gives the heading/title to the bar chart</h4>
+</div>
+<div id="xlab-and-ylab-is-the-xlabel-and-ylabel-to-the-xy-axis-repectively" class="section level4">
+<h4>xlab and ylab is the xlabel and ylabel to the x&amp;y axis repectively</h4>
+</div>
+<div id="geom_bar-creates-the-bar-plot-and-the-lining-is-yellow.the-xaxis-texts-were-colliding-and-hence-adjusted-the-text-to-flip-to-90deg" class="section level4">
+<h4>geom_bar creates the bar plot and the lining is yellow.The xaxis texts were colliding and hence adjusted the text to flip to 90deg</h4>
 <pre class="r"><code>p &lt;-ggplot(ABV_ST, aes(ABV_ST$State, ABV_ST$ABV))
 p +geom_bar(stat = &quot;identity&quot;,colour=&quot;YELLOW&quot;) + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab(&quot;State&quot;) + ylab(&quot;Median ABV&quot;) + ggtitle(&quot;ABV Vs State&quot;) </code></pre>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
 </div>
 <div id="bar-chart-inference" class="section level2">
 <h2>Bar chart Inference:</h2>
@@ -436,6 +490,14 @@ p +geom_bar(stat = &quot;identity&quot;,colour=&quot;YELLOW&quot;) + theme(axis.
 </div>
 <div id="median-international-bitteness-unit-for-each-state" class="section level2">
 <h2>Median International bitteness Unit for each state</h2>
+<div id="aggregate-function-is-used-to-get-the-median-value-of-ibu-group-by-state.na.rm-is-set-to-true-to-remove-the-na-observations-and-then-get-the-median-value" class="section level4">
+<h4>aggregate function is used to get the median value of IBU group by state.na.rm is set to TRUE to remove the NA observations and then get the median value</h4>
+</div>
+<div id="colnames-function-sets-the-column-names-of-the-derived-dataframe-to-a-meaningful-literal" class="section level4">
+<h4>colnames function sets the column names of the derived dataframe to a meaningful literal</h4>
+</div>
+<div id="summary-function-will-give-the-5-point-summary-statistics-of-the-variable-given-as-argument-1" class="section level4">
+<h4>Summary function will give the 5 point summary statistics of the variable given as argument</h4>
 <pre class="r"><code>IBU_ST&lt;-aggregate(merge_df$IBU ~ merge_df$State, data = merge_df, median,na.rm=TRUE)
 colnames(IBU_ST) &lt;- c(&quot;State&quot;,&quot;IBU&quot;)
 IBU_ST</code></pre>
@@ -500,11 +562,21 @@ IBU_ST</code></pre>
 ##   CO    : 1   Max.   :61.00  
 ##  (Other):44</code></pre>
 </div>
+</div>
 <div id="bar-chart-to-show-median-ibu-in-various-states" class="section level2">
 <h2>Bar Chart to show median IBU in various states</h2>
+<div id="ggplot-function-is-used-to-get-the-bar-chart-where-x-axis-is-the-state-and-y-axis-is-median-ibu.ggtitle-gives-the-headingtitle-to-the-bar-chart" class="section level4">
+<h4>ggplot function is used to get the bar chart where x axis is the state and y axis is Median IBU.ggtitle gives the heading/title to the bar chart</h4>
+</div>
+<div id="xlab-and-ylab-is-the-xlabel-and-ylabel-to-the-xy-axis-repectively-1" class="section level4">
+<h4>xlab and ylab is the xlabel and ylabel to the x&amp;y axis repectively</h4>
+</div>
+<div id="geom_bar-creates-the-bar-plot-and-the-lining-is-yellow.the-xaxis-texts-were-colliding-and-hence-adjusted-the-text-to-flip-to-90deg-1" class="section level4">
+<h4>geom_bar creates the bar plot and the lining is yellow.The xaxis texts were colliding and hence adjusted the text to flip to 90deg</h4>
 <pre class="r"><code>q &lt;-ggplot(IBU_ST, aes(IBU_ST$State, IBU_ST$IBU))
 q +geom_bar(stat = &quot;identity&quot;,colour=&quot;YELLOW&quot;) + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab(&quot;State&quot;) + ylab(&quot;Median IBU&quot;) + ggtitle(&quot;IBU Vs State&quot;) </code></pre>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
 </div>
 <div id="bar-chart-inference-1" class="section level2">
 <h2>Bar chart Inference:</h2>
@@ -515,19 +587,37 @@ q +geom_bar(stat = &quot;identity&quot;,colour=&quot;YELLOW&quot;) + theme(axis.
 </div>
 <div id="state-having-max-alcoholic-beer" class="section level1">
 <h1>5. State having max alcoholic beer</h1>
+<div id="which.max-function-gives-the-maximum-value-of-the-variable-passed-as-argument." class="section level4">
+<h4>which.max function gives the maximum value of the variable passed as argument.</h4>
+</div>
+<div id="str-function-find-the-column-positions-to-get-the-column-position" class="section level4">
+<h4>str function find the column positions to get the column position</h4>
+</div>
+<div id="based-on-the-column-positionprint-state-and-abv-from-the-vector-or-df" class="section level4">
+<h4>Based on the column position,print state and ABV from the vector or df</h4>
 <pre class="r"><code>alc&lt;-merge_df[which.max(merge_df$ABV),]
 alc[c(4,7)]</code></pre>
 <pre><code>##     State   ABV
 ## 384    CO 0.128</code></pre>
+</div>
 <div id="state-of-colorado-co-with-abv-0.128" class="section level3">
 <h3>State of Colorado (CO) with ABV = 0.128</h3>
 </div>
 <div id="state-with-most-bitter-beer" class="section level2">
 <h2>State with Most bitter beer</h2>
+<div id="which.max-function-gives-the-maximum-value-of-the-variable-passed-as-argument.-1" class="section level4">
+<h4>which.max function gives the maximum value of the variable passed as argument.</h4>
+</div>
+<div id="prints-the-entire-row-for-the-max-value-of-ibu" class="section level4">
+<h4>prints the entire row for the max value of IBU</h4>
+</div>
+<div id="based-on-the-column-positionprint-state-and-ibu-from-the-vectordf" class="section level4">
+<h4>Based on the column position,print state and IBU from the vector/df</h4>
 <pre class="r"><code>bitter&lt;-merge_df[which.max(merge_df$IBU),]
 bitter[c(4,8)]</code></pre>
 <pre><code>##      State IBU
 ## 1857    OR 138</code></pre>
+</div>
 <div id="state-of-oregon-or-with-ibu-138" class="section level3">
 <h3>State of Oregon (OR) with IBU = 138</h3>
 </div>
@@ -535,6 +625,11 @@ bitter[c(4,8)]</code></pre>
 </div>
 <div id="summary-statistics-for-abv" class="section level1">
 <h1>6. Summary Statistics for ABV</h1>
+<div id="summary-function-gives-the-5-point-summary-stats.-we-see-that-there-are-some-nas." class="section level4">
+<h4>summary function gives the 5 point summary stats. We see that there are some NAs.</h4>
+</div>
+<div id="since-there-are-some-nas-use-na.omit-to-remove-the-nas-and-print-the-sumamry-stats-again" class="section level4">
+<h4>Since there are some NAs , use na.omit to remove the NAs and print the sumamry stats again</h4>
 <pre class="r"><code>summary(merge_df$ABV)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62</code></pre>
@@ -543,16 +638,32 @@ abv_n&lt;-na.omit(merge_df$ABV)
 summary(abv_n)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800</code></pre>
+</div>
 <div id="from-the-5-point-summary-statistics-irrespective-of-the-state-the-minimum-value-is-0.00100-max-val-is-0.12800-mean-is-0.05977-median-is-0.05600-q1-is-0.05000-and-q3-is-0.06700" class="section level3">
 <h3>From the 5 point summary statistics, irrespective of the state , the minimum value is 0.00100 , Max val is 0.12800 ,Mean is 0.05977 , median is 0.05600 , Q1 is 0.05000 and Q3 is 0.06700</h3>
 </div>
 </div>
 <div id="relationship-between-bitterness-and-alcoholic-content" class="section level1">
 <h1>7. Relationship between Bitterness and Alcoholic content</h1>
+<div id="na.omit-removes-the-na-observations-before-plotting-to-avoid-misleading-results." class="section level4">
+<h4>na.omit removes the NA observations before plotting to avoid misleading results.</h4>
+</div>
+<div id="ggplot-function-is-used-to-get-the-bar-chart-where-x-axis-is-the-abv-and-y-axis-is-ibu.ggtitle-gives-the-headingtitle-to-the-bar-chart" class="section level4">
+<h4>ggplot function is used to get the bar chart where x axis is the ABV and y axis is IBU.ggtitle gives the heading/title to the bar chart</h4>
+</div>
+<div id="xlab-and-ylab-is-the-xlabel-and-ylabel-to-the-xy-axis-repectively-2" class="section level4">
+<h4>xlab and ylab is the xlabel and ylabel to the x&amp;y axis repectively</h4>
+</div>
+<div id="geom_point-creates-the-scatter-plot-and-the-color-chosen-is-red.-geom_smooth-is-used-to-draw-a-line-along-the-observation-points-." class="section level4">
+<h4>geom_point creates the scatter plot and the color chosen is Red. geom_smooth is used to draw a line along the observation points .</h4>
+</div>
+<div id="since-the-method-chosen-is-lm-linear-method-it-draws-a-45deg-linear-line-across-the-plot-to-show-the-linear-regression.-color-of-the-line-is-chosen-to-be-blue" class="section level4">
+<h4>Since the method chosen is lm (linear method) it draws a 45deg linear line across the plot to show the linear regression. Color of the line is chosen to be BLUE</h4>
 <pre class="r"><code>merge_df1 &lt;- na.omit(merge_df)
 ggplot(merge_df1 ,aes(x=merge_df1$ABV, y=merge_df1$IBU)) + geom_point(shape=20, color=&quot;RED&quot;) +geom_smooth(method='lm',color=&quot;BLUE&quot;) + xlab(&quot;Alcohol By Vol&quot;) + ylab(&quot;International Bitterness Unit&quot;) +
   ggtitle(&quot;Bitterness Vs Alcohol Content&quot;) </code></pre>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
 <div id="scatter-plot-inference" class="section level2">
 <h2>Scatter Plot Inference</h2>
 <div id="from-the-scatter-plot-we-see-that-the-relationship-is-mildly-linear.-there-are-few-outliers-with-abv0.06-and-ibu-110-abv0.092-and-ibu-1.we-can-run-a-correlation-test-before-and-after-removing-the-outliers-to-prove-statistically.the-data-shows-that-most-beers-are-with-abv-around-.05-has-bitterness-level-ibu-approximately-around-50" class="section level3">
