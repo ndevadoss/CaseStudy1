@@ -330,7 +330,7 @@ p <-ggplot(ABV_ST, aes(ABV_ST$State, ABV_ST$ABV))
 p +geom_bar(stat = "identity",colour="YELLOW") + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab("State") + ylab("Median ABV") + ggtitle("ABV Vs State") 
 ```
 
-![](https://github.com/ndevadoss/CaseStudy1/blob/master/Analysis/Beer_files/figure-html/Bar%20plot%20ABV-1.png)<!-- -->
+![](Beer_files/figure-html/Bar plot ABV-1.png)<!-- -->
 
 ## Bar chart Inference: 
 ### There is little variation across all the states in median Alcohol  by volume. It is almost equal. This can be seen from the bar chart and also by the summary statistics. The minimum is 0.04 for the state of UT and maximum is 0.06 for the state of DC,KY,NV,MI,NM,OK,CT,CO,SD,WV  
@@ -424,7 +424,7 @@ q <-ggplot(IBU_ST, aes(IBU_ST$State, IBU_ST$IBU))
 q +geom_bar(stat = "identity",colour="YELLOW") + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab("State") + ylab("Median IBU") + ggtitle("IBU Vs State") 
 ```
 
-![](https://github.com/ndevadoss/CaseStudy1/blob/master/Analysis/Beer_files/figure-html/Bar%20plot%20IBU-1.png)<!-- -->
+![](Beer_files/figure-html/Bar plot IBU-1.png)<!-- -->
 
 ## Bar chart Inference: 
 ### There is variation across the states in median IBU. This can be seen from the bar chart and also by the summary statistics. The minimum is 19 for the state of WI and maximum is 61 for the state of ME 
@@ -499,7 +499,7 @@ ggplot(merge_df1 ,aes(x=merge_df1$ABV, y=merge_df1$IBU)) + geom_point(shape=20, 
   ggtitle("Bitterness Vs Alcohol Content") 
 ```
 
-![](https://github.com/ndevadoss/CaseStudy1/blob/master/Analysis/Beer_files/figure-html/Scatter%20plot-1.png)<!-- -->
+![](Beer_files/figure-html/Scatter plot-1.png)<!-- -->
 
 ## Scatter Plot Inference
 ### From the scatter plot we see that the relationship is mildly linear. There are few outliers with ABV=0.06 and IBU >110 ,  ABV=0.092 and IBU ~= 1.We can run a correlation test before and after removing the outliers to prove statistically.The data shows that most beers are with ABV around .05 has bitterness level (IBU) approximately around 50

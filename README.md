@@ -30,17 +30,30 @@
 ### 4.State: State where the brewery is located.
 
 # File Organization:
-### Raw data files and merged data file is available inside the /DataFiles directory 
+#### Raw data files and merged data file is available inside the /DataFiles directory 
 
-### 1./DataFiles/Beers.csv
-### 2./DataFiles/Breweries.csv
-### 3./DataFiles/merge.csv
+### Two directories: 1) DataFiles 2)Analysis
+### DataFiles has the following 
+#### 1./DataFiles/Beers.csv
+#### 2./DataFiles/Breweries.csv
+#### 3./DataFiles/merge.csv
+#### 4./DataFiles/DataRead.R
+#### 4./DataFiles/DataRead.md
+
+## Analysis has the following 
+#### 1./Analysis/BeerAnalysis.R
+#### 2./Analysis/Beer.md
+
+# Deliverables
 ### DataRead.md will show the markdown file version of the data read step.
+### Beer.md will show the markdown file version of the Data Analysis and answers to the 7 questions
 
-# Data Analysis
-### Data has been analysed and the analysis script is stored in /Analysis/Beer.md and the corresponding rmd file is /Analysis/Beer.rmd
-### The R script can be found inside the same directory /Analysis/BeerAnalysis.R
+## Data Read
+### /DataFiles/DataRead.R is the data read and data profiling script
 
-# Pictorial Results
+## Data Analysis
+### Data has been analysed and the analysis script is stored in /Analysis/BeerAnalysis.R and the corresponding rmd file is /Analysis/Beer.rmd
+
+## Pictorial Results
 ### All the pictorial results is stored in /Graph directory
 ### IBU_Vs_ABV , MedABV_Vs_State,MedIBU_Vs_State
