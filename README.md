@@ -1,17 +1,8 @@
----
-#Title: "BeerStudy"
-#Author: "Nithya Devadoss"
-#Date: "July 1, 2017"
-#output: /Analysis/Beer.md
-#  html_document: /Analysis/Beer.html
-#Language Used : R 
-#    keep_md: yes
----
-#Title: "BeerStudy"
-#Author: "Nithya Devadoss"
-#Date: "July 1, 2017"
-#output: /Analysis/Beer.md
-#  html_document: /Analysis/Beer.html
+#   Title: "BeerStudy"
+#   Author: "Nithya Devadoss"
+#   Date: "July 1, 2017"
+#   output: /Analysis/Beer.md
+#   html_document: /Analysis/Beer.html
 
 #Introduction:
 
