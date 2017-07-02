@@ -1,0 +1,48 @@
+---
+title: "Data Reading"
+author: "Nithya Devadoss"
+date: "July 1, 2017"
+output: 
+  html_document: 
+    keep_md: yes
+keep_md: true
+---
+#Data Dictionary:
+##Beers data file has 2410 observations and 7 columns: 
+
+##Beers.csv: 
+###Name: Name of the beer. 
+###Beer ID: Unique identiﬁer of the beer
+###ABV: Alcohol by volume of the beer. 
+###IBU: International Bitterness Units of the beer. 
+###Brewery ID: Brewery id associated with the beer. 
+###Style: Style of the beer. 
+###Ounces: Ounces of beer.
+
+##Breweries data file has 558 Observations and 4 columns
+
+##Breweries.csv: 
+###Brew ID: Unique identiﬁer of the brewery. 
+###Name: Name of the brewery. 
+###City: City where the brewery is located. 
+###State: State where the brewery is located.
+
+## Reading Files 
+## Added na.strings to convert blanks to NA for easy data cleanup
+```{r, Read csv files, echo=TRUE}
+library(readr)
+Beers <- read.csv("C:/Nithya/MSDS/Term1/6306_Doing_DS/Week7/CaseStudy/Download/Beers.csv",header=T,na.strings="")
+Breweries <- read.csv("C:/Nithya/MSDS/Term1/6306_Doing_DS/Week7/CaseStudy/Download/Breweries.csv",header=T,na.strings="")
+```
+##Sample Beer data and number of observations
+## Beers data file has 2410 observations and 7 columns
+```{r,sample}
+str(Beers)
+head(Beers)
+```
+#Sample Breweries data
+## Breweris data file has 558 Observations and 4 columns
+```{r,Sample data}
+str(Breweries)
+head(Breweries)
+```

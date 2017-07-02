@@ -1,0 +1,158 @@
+---
+title: "BeerStudy"
+author: "Nithya Devadoss"
+date: "July 1, 2017"
+output: 
+  html_document: 
+    keep_md: yes
+---
+#Introduction:
+### This case study is to analyze everything about Beers and Breweries across United States. We have the sample data collected on Beers and Breweries and is available in the Data directory inside the CaseStudy Repository in github.File count as following:
+
+#Data Dictionary:
+##Beers data file has 2410 observations and 7 columns: 
+
+##Beers.csv: 
+###Name: Name of the beer. 
+###Beer ID: Unique identiﬁer of the beer
+###ABV: Alcohol by volume of the beer. 
+###IBU: International Bitterness Units of the beer. 
+###Brewery ID: Brewery id associated with the beer. 
+###Style: Style of the beer. 
+###Ounces: Ounces of beer.
+
+##Breweries data file has 558 Observations and 4 columns
+
+##Breweries.csv: 
+###Brew ID: Unique identiﬁer of the brewery. 
+###Name: Name of the brewery. 
+###City: City where the brewery is located. 
+###State: State where the brewery is located.
+
+
+#Objective:
+### Based on this analysis we will discover various information which could be used for marketing decisions , like ; which state has most number of breweries ; which state has lowest ; Is there a relation between IBU and ABV; If so what is the strength ; Are there any outliers.
+
+## In order to perform the study we will do the following steps which will also answer the questions :
+###Load the required libraries to perform the study.
+```{r,loading libraries, echo=FALSE }
+library(readr)
+library(ggplot2)
+```
+
+
+## Reading Files 
+
+```{r, Read csv files, echo=TRUE}
+Beers <- read.csv("C:/Nithya/MSDS/Term1/6306_Doing_DS/Week7/CaseStudy/Download/Beers.csv",header=T,na.strings="")
+Breweries <- read.csv("C:/Nithya/MSDS/Term1/6306_Doing_DS/Week7/CaseStudy/Download/Breweries.csv",header=T,na.strings="")
+str(Beers)
+str(Breweries)
+```
+## Beers data file has 2410 observations and 7 columns
+## Breweries data file has 558 Observations and 4 columns
+
+## Answers to the 7 Questions 
+
+# 1. Count the number of breweries by state
+```{r  , Count of breweries by state  }
+aggregate(cbind(count = Breweries$Brew_ID) ~ Breweries$State, 
+          data = Breweries, 
+          FUN = function(x){NROW(x)})
+```
+
+### There are 47 breweries in CO , followed by CA with 39 Breweries
+### On the contrary , there is only one Brewery in DC,ND,SD,WV
+ 
+
+# 2. Merging Beers and Breweries data
+```{r  , Merge Data  }
+merge_df<-merge(Breweries,Beers,by.x = "Brew_ID" , by.y = "Brewery_id")
+## Number of observations after data merging
+str(merge_df)
+## **************
+##First 6 records
+## **************
+head(merge_df)
+## *************
+##Last 6 records
+## *************
+tail(merge_df)
+```
+
+### After merging we have 2410 obs. of  10 variables. This dataset is available in Data Directory along with the sample data. Filename : merge.csv
+
+#3. Reporting # of NA's
+```{r  , count of NA  }
+colSums(is.na(merge_df))
+```
+### Based on the result ,we have 62 NA in the column ABV , 1005 NA in the column IBU and 5 NA in the column Style. 
+
+# 4.Median alcohol content for each state
+```{r  , Median ABV  }
+ABV_ST<-aggregate(merge_df$ABV ~ merge_df$State, data = merge_df, median,na.rm=TRUE)
+colnames(ABV_ST) <- c("State","ABV") 
+ABV_ST
+summary(ABV_ST)
+```
+##Bar Chart to show Median ABV in various states
+```{r , Bar plot ABV}
+p <-ggplot(ABV_ST, aes(ABV_ST$State, ABV_ST$ABV))
+p +geom_bar(stat = "identity",colour="YELLOW") + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab("State") + ylab("Median ABV") + ggtitle("ABV Vs State") 
+```
+
+##Bar chart Inference: 
+###There is little variation across all the states in median Alcohol  by volume. It is almost equal. This can be seen from the bar chart and also by the summary statistics. The minimum is 0.04 for the state of UT and maximum is 0.06 for the state of DC,KY,NV,MI,NM,OK,CT,CO,SD,WV  
+
+## Median International bitteness Unit for each state
+```{r  , Median IBU  }
+IBU_ST<-aggregate(merge_df$IBU ~ merge_df$State, data = merge_df, median,na.rm=TRUE)
+colnames(IBU_ST) <- c("State","IBU")
+IBU_ST
+summary(IBU_ST)
+```
+##Bar Chart to show median IBU in various states
+```{r , Bar plot IBU}
+q <-ggplot(IBU_ST, aes(IBU_ST$State, IBU_ST$IBU))
+q +geom_bar(stat = "identity",colour="YELLOW") + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab("State") + ylab("Median IBU") + ggtitle("IBU Vs State") 
+```
+
+##Bar chart Inference: 
+### There is variation across the states in median IBU. This can be seen from the bar chart and also by the summary statistics. The minimum is 19 for the state of WI and maximum is 61 for the state of ME 
+
+# 5. State having max alcoholic beer
+```{r  , State with max alcohol }
+alc<-merge_df[which.max(merge_df$ABV),]
+alc[c(4,7)]
+```
+### State of Colorado (CO) with ABV = 0.128
+
+## State with Most bitter beer
+```{r  , State with most bitter beer  }
+bitter<-merge_df[which.max(merge_df$IBU),]
+bitter[c(4,8)]
+```
+### State of Oregon (OR) with IBU = 138
+
+# 6. Summary Statistics for ABV
+```{r , Summ stat for ABV}
+summary(merge_df$ABV)
+## After removing NAs
+abv_n<-na.omit(merge_df$ABV)
+summary(abv_n)
+```
+### From the 5 point summary statistics, irrespective of the state , the minimum value is 0.00100 , Max val is 0.12800 ,Mean is 0.05977 , median is 0.05600 , Q1 is 0.05000 and Q3 is 0.06700
+
+# 7. Relationship between Bitterness and Alcoholic content
+```{r , Scatter plot}
+merge_df1 <- na.omit(merge_df)
+ggplot(merge_df1 ,aes(x=merge_df1$ABV, y=merge_df1$IBU)) + geom_point(shape=20, color="RED") +geom_smooth(method='lm',color="BLUE") + xlab("Alcohol By Vol") + ylab("International Bitterness Unit") +
+  ggtitle("Bitterness Vs Alcohol Content") 
+```
+
+##Scatter Plot Inference
+### From the scatter plot we see that the relationship is mildly linear. There are few outliers with ABV=0.06 and IBU >110 ,  ABV=0.092 and IBU ~= 1.We can run a correlation test before and after removing the outliers to prove statistically.The data shows that most beers are with ABV around .05 has bitterness level (IBU) approximately around 50
+
+#Conclusion:
+
+###Here are the key takeaways from the above analysis based on the sample we have on Beers and Breweries - Maximum number of breweries is in CO (47) followed by CA(39).  There is only one brewery in DC,ND,SD,WV. There could be various factors which could affect this figure , for example State laws and tourism. State with most alcohol content is Colorado(CO) with ABV = 0.128 and the state with most bitter beer is Oregon (OR) with IBU = 138. The median alcohol content is around 0.05 which is approximately the same across various states. The minimum is in the state of UT. The bitterness level which is measured by IBU varies across various states and has a mildly linear correlation to the alcohol content. From the plots we also find that there are a few outliers which could affect this correlation statistically. Further research should be done with and without outliers and publish the study results. 
