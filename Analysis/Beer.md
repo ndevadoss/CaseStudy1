@@ -29,11 +29,7 @@ July 1, 2017
 ### Based on this analysis we will discover various information which could be used for marketing decisions , like ; which state has most number of breweries ; which state has lowest ; Is there a relation between IBU and ABV; If so what is the strength ; Are there any outliers.
 
 ## In order to perform the study we will do the following steps which will also answer the questions :
-<<<<<<< HEAD
 ### Load the required libraries to perform the study.We will need readr for file reading and ggplot2 for br plot and scatter plot
-=======
-### Load the required libraries to perform the study.
->>>>>>> 6bcc1ab02c71daaddca8fa894c39a36f08539ec9
 
 
 
@@ -229,11 +225,8 @@ tail(merge_df)
 ### After merging we have 2410 obs. of  10 variables. This dataset is available in Data Directory along with the sample data. Filename : merge.csv
 
 # 3. Reporting # of NA's
-<<<<<<< HEAD
 #### is.na function is used to find the observations which is NA which is the result of merge or the blanks which were converted to NA when we read the file
 #### colsums will get the total count of the observations if is.na returns true
-=======
->>>>>>> 6bcc1ab02c71daaddca8fa894c39a36f08539ec9
 
 ```r
 colSums(is.na(merge_df))
@@ -328,12 +321,9 @@ summary(ABV_ST)
 ##  (Other):45
 ```
 ## Bar Chart to show Median ABV in various states
-<<<<<<< HEAD
 #### ggplot function is used to get the bar chart where x axis is the state and y axis is Median ABV.ggtitle gives the heading/title to the bar chart
 #### xlab and ylab is the xlabel and ylabel to the x&y axis repectively
 #### geom_bar creates the bar plot and the lining is yellow.The xaxis texts were colliding and hence adjusted the text to flip to 90deg
-=======
->>>>>>> 6bcc1ab02c71daaddca8fa894c39a36f08539ec9
 
 ```r
 p <-ggplot(ABV_ST, aes(ABV_ST$State, ABV_ST$ABV))
@@ -425,12 +415,9 @@ summary(IBU_ST)
 ##  (Other):44
 ```
 ## Bar Chart to show median IBU in various states
-<<<<<<< HEAD
 #### ggplot function is used to get the bar chart where x axis is the state and y axis is Median IBU.ggtitle gives the heading/title to the bar chart
 #### xlab and ylab is the xlabel and ylabel to the x&y axis repectively
 #### geom_bar creates the bar plot and the lining is yellow.The xaxis texts were colliding and hence adjusted the text to flip to 90deg
-=======
->>>>>>> 6bcc1ab02c71daaddca8fa894c39a36f08539ec9
 
 ```r
 q <-ggplot(IBU_ST, aes(IBU_ST$State, IBU_ST$IBU))
