@@ -330,7 +330,7 @@ p <-ggplot(ABV_ST, aes(ABV_ST$State, ABV_ST$ABV))
 p +geom_bar(stat = "identity",colour="YELLOW") + theme(axis.text.x=element_text(angle=90,hjust=1)) + xlab("State") + ylab("Median ABV") + ggtitle("ABV Vs State") 
 ```
 
-![](Beer_files/figure-html/Bar plot ABV-1.png)<!-- -->
+![](https://github.com/ndevadoss/CaseStudy1/blob/master/Analysis/Beer_files/figure-html/Bar%20plot%20ABV-1.png)<!-- -->
 
 ## Bar chart Inference: 
 ### There is little variation across all the states in median Alcohol  by volume. It is almost equal. This can be seen from the bar chart and also by the summary statistics. The minimum is 0.04 for the state of UT and maximum is 0.06 for the state of DC,KY,NV,MI,NM,OK,CT,CO,SD,WV  
