@@ -5,9 +5,16 @@
 #output: /Analysis/Beer.md
 #  html_document: /Analysis/Beer.html
 #Language Used : R 
-    keep_md: yes
+#    keep_md: yes
 ---
+#Title: "BeerStudy"
+#Author: "Nithya Devadoss"
+#Date: "July 1, 2017"
+#output: /Analysis/Beer.md
+#  html_document: /Analysis/Beer.html
+
 #Introduction:
+
 ### This case study is to analyze everything about Beers and Breweries across United States. We have the sample data collected on Beers and Breweries and is available in the Data directory inside the CaseStudy Repository in github.File count as following:
 
 ##Data Dictionary:
@@ -42,6 +49,6 @@
 ### Data has been analysed and the analysis script is stored in /Analysis/Beer.md and the corresponding rmd file is /Analysis/Beer.rmd
 ### The R script can be found inside the same directory /Analysis/BeerAnalysis.R
 
-##Pictorial Results
+#Pictorial Results
 ### All the pictorial results is stored in /Graph directory
 ### IBU_Vs_ABV , MedABV_Vs_State,MedIBU_Vs_State
