@@ -1,35 +1,35 @@
 # BeerStudy
 Nithya Devadoss  
 July 1, 2017  
-#Introduction:
+# Introduction:
 ### This case study is to analyze everything about Beers and Breweries across United States. We have the sample data collected on Beers and Breweries and is available in the Data directory inside the CaseStudy Repository in github.File count as following:
 
-#Data Dictionary:
-##Beers data file has 2410 observations and 7 columns: 
+# Data Dictionary:
+## Beers data file has 2410 observations and 7 columns: 
 
-##Beers.csv: 
-###Name: Name of the beer. 
-###Beer ID: Unique identiﬁer of the beer
-###ABV: Alcohol by volume of the beer. 
-###IBU: International Bitterness Units of the beer. 
-###Brewery ID: Brewery id associated with the beer. 
-###Style: Style of the beer. 
-###Ounces: Ounces of beer.
+## Beers.csv: 
+### Name: Name of the beer. 
+### Beer ID: Unique identiﬁer of the beer
+### ABV: Alcohol by volume of the beer. 
+### IBU: International Bitterness Units of the beer. 
+### Brewery ID: Brewery id associated with the beer. 
+### Style: Style of the beer. 
+### Ounces: Ounces of beer.
 
-##Breweries data file has 558 Observations and 4 columns
+## Breweries data file has 558 Observations and 4 columns
 
-##Breweries.csv: 
-###Brew ID: Unique identiﬁer of the brewery. 
-###Name: Name of the brewery. 
-###City: City where the brewery is located. 
-###State: State where the brewery is located.
+## Breweries.csv: 
+### Brew ID: Unique identiﬁer of the brewery. 
+### Name: Name of the brewery. 
+### City: City where the brewery is located. 
+### State: State where the brewery is located.
 
 
-#Objective:
+# Objective:
 ### Based on this analysis we will discover various information which could be used for marketing decisions , like ; which state has most number of breweries ; which state has lowest ; Is there a relation between IBU and ABV; If so what is the strength ; Are there any outliers.
 
 ## In order to perform the study we will do the following steps which will also answer the questions :
-###Load the required libraries to perform the study.
+### Load the required libraries to perform the study.
 
 
 
@@ -215,7 +215,7 @@ tail(merge_df)
 
 ### After merging we have 2410 obs. of  10 variables. This dataset is available in Data Directory along with the sample data. Filename : merge.csv
 
-#3. Reporting # of NA's
+# 3. Reporting # of NA's
 
 ```r
 colSums(is.na(merge_df))
@@ -306,7 +306,7 @@ summary(ABV_ST)
 ##   CO    : 1   Max.   :0.06250  
 ##  (Other):45
 ```
-##Bar Chart to show Median ABV in various states
+## Bar Chart to show Median ABV in various states
 
 ```r
 p <-ggplot(ABV_ST, aes(ABV_ST$State, ABV_ST$ABV))
@@ -394,7 +394,7 @@ summary(IBU_ST)
 ##   CO    : 1   Max.   :61.00  
 ##  (Other):44
 ```
-##Bar Chart to show median IBU in various states
+## Bar Chart to show median IBU in various states
 
 ```r
 q <-ggplot(IBU_ST, aes(IBU_ST$State, IBU_ST$IBU))
@@ -403,7 +403,7 @@ q +geom_bar(stat = "identity",colour="YELLOW") + theme(axis.text.x=element_text(
 
 ![](Beer_files/figure-html/Bar plot IBU-1.png)<!-- -->
 
-##Bar chart Inference: 
+## Bar chart Inference: 
 ### There is variation across the states in median IBU. This can be seen from the bar chart and also by the summary statistics. The minimum is 19 for the state of WI and maximum is 61 for the state of ME 
 
 # 5. State having max alcoholic beer
@@ -465,9 +465,9 @@ ggplot(merge_df1 ,aes(x=merge_df1$ABV, y=merge_df1$IBU)) + geom_point(shape=20, 
 
 ![](Beer_files/figure-html/Scatter plot-1.png)<!-- -->
 
-##Scatter Plot Inference
+## Scatter Plot Inference
 ### From the scatter plot we see that the relationship is mildly linear. There are few outliers with ABV=0.06 and IBU >110 ,  ABV=0.092 and IBU ~= 1.We can run a correlation test before and after removing the outliers to prove statistically.The data shows that most beers are with ABV around .05 has bitterness level (IBU) approximately around 50
 
-#Conclusion:
+# Conclusion:
 
-###Here are the key takeaways from the above analysis based on the sample we have on Beers and Breweries - Maximum number of breweries is in CO (47) followed by CA(39).  There is only one brewery in DC,ND,SD,WV. There could be various factors which could affect this figure , for example State laws and tourism. State with most alcohol content is Colorado(CO) with ABV = 0.128 and the state with most bitter beer is Oregon (OR) with IBU = 138. The median alcohol content is around 0.05 which is approximately the same across various states. The minimum is in the state of UT. The bitterness level which is measured by IBU varies across various states and has a mildly linear correlation to the alcohol content. From the plots we also find that there are a few outliers which could affect this correlation statistically. Further research should be done with and without outliers and publish the study results. 
+### Here are the key takeaways from the above analysis based on the sample we have on Beers and Breweries - Maximum number of breweries is in CO (47) followed by CA(39).  There is only one brewery in DC,ND,SD,WV. There could be various factors which could affect this figure , for example State laws and tourism. State with most alcohol content is Colorado(CO) with ABV = 0.128 and the state with most bitter beer is Oregon (OR) with IBU = 138. The median alcohol content is around 0.05 which is approximately the same across various states. The minimum is in the state of UT. The bitterness level which is measured by IBU varies across various states and has a mildly linear correlation to the alcohol content. From the plots we also find that there are a few outliers which could affect this correlation statistically. Further research should be done with and without outliers and publish the study results. 
