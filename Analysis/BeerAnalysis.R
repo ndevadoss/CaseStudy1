@@ -1,6 +1,9 @@
 
 source('DataFiles/DataRead.R')
 
+
+source('DataMerge/DataMerge.R')
+
 ## Answers to the 7 Questions 
 
 # 1. Count the number of breweries by state
