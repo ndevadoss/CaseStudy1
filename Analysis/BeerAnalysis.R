@@ -1,5 +1,6 @@
 
-source('DataFiles/DataRead.R')
+source('DataGather/Gather1.R')
+source('DataGather/Gather2.R')
 
 
 source('DataMerge/DataMerge.R')
@@ -21,7 +22,8 @@ aggregate(cbind(count = Breweries$Brew_ID) ~ Breweries$State,
 # 2. Merging Beers and Breweries data
 #### merge function is used to merge 2 dataframes Beer and Breweries with a joining column which is brewid. 
 #### Since the common column name is different in both dataframes we can use by.x and by.y argument to define the joining column name
-merge_df<-merge(Breweries,Beers,by.x = "Brew_ID" , by.y = "Brewery_id")
+# merge_df<-merge(Breweries,Beers,by.x = "Brew_ID" , by.y = "Brewery_id")
+#### Executed source("DataMerge.R")
 ## Number of observations after data merging
 #### str function displays the class of the variable and the total number of observations
 str(merge_df)
