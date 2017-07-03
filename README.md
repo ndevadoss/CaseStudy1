@@ -32,12 +32,11 @@
 # File Organization:
 #### Raw data files and merged data file is available inside the /DataFiles directory 
 
-### Two directories: 1) DataFiles 2)Analysis 3)DataMerge 4)DataGather
+### 5 directories: 1) DataFiles 2)Analysis 3)DataMerge 4)DataGather 5)Graphs
 ### DataFiles has the following 
 #### 1./DataFiles/Beers.csv
 #### 2./DataFiles/Breweries.csv
 #### 3./DataFiles/merge.csv
-#### 4./DataFiles/DataRead.R
 #### 4./DataFiles/DataRead.md
 
 ## Analysis has the following 
@@ -50,6 +49,11 @@
 ## DataGather has the following 
 #### 1./DataGather/Gather1.R
 #### 2./DataGather/Gather2.R
+
+## Graph has the following 
+#### 1./DataGather/IBU_Vs_ABV.png
+#### 2./DataGather/MedABV_Vs_State.png
+#### 3./DataGather/MedIBU_Vs_State.png
 
 # Deliverables
 ### DataRead.md will show the markdown file version of the data read step.
